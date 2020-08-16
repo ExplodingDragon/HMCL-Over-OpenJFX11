@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        maven { url = uri("https://maven.aliyun.com/repository/public/") }
         jcenter()
         maven { url 'https://plugins.gradle.org/m2/' }
     }
@@ -8,6 +9,13 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        maven { url = uri("https://maven.aliyun.com/repository/public/") }
+        jcenter()
+        maven { url = uri( "https://jitpack.io") }
+    }
+}
 group 'org.jackhuang'
 version '3.0'
 

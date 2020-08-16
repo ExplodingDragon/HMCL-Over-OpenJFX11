@@ -7,6 +7,8 @@ buildscript {
 plugins {
     id 'com.github.johnrengelman.shadow' version '4.0.0'
     id 'application'
+    id("org.openjfx.javafxplugin") version "0.0.9"
+
 }
 
 import java.nio.file.FileSystems
@@ -142,9 +144,9 @@ processResources {
             def cssFile = new File(this.projectDir, "src/main/resources/" + resource)
             def bssFile = new File(this.projectDir, "build/compiled-resources/" + resource[0..-4] + "bss")
             bssFile.parentFile.mkdirs()
-            exec {
-                commandLine 'javapackager', '-createbss', '-outdir', bssFile.parent, '-srcfiles', cssFile.path
-            }
+//            exec {
+//                commandLine 'javapackager', '-createbss', '-outdir', bssFile.parent, '-srcfiles', cssFile.path
+//            }
         }
     }
     from "build/compiled-resources"
@@ -183,3 +185,14 @@ task makeExecutables(dependsOn: jar) doLast {
 build.dependsOn makePackXz
 build.dependsOn makePackGz
 build.dependsOn makeExecutables
+
+
+
+
+
+
+javafx {
+    version = "11.0.2"
+    modules("javafx.controls", "javafx.fxml","javafx.swing","javafx.media","javafx.graphics","javafx.web")
+}
+
